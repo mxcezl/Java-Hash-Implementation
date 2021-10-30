@@ -24,14 +24,17 @@ public class Task1 {
 		byte[] IV = generateRandomIV();
 		
 		// Test de chiffrement
+		// Cree un fichier dans /resources/encrypted
 		File chiffre = encryptFileWithAES(new File(Task1.class.getClassLoader().getResource("Task1_fileToEncrypt").toURI()), secret, IV);
 		
 		// Test de dechiffrement
+		// Cree un fichier dans /resources/decrypted
 		File dechiffre = decryptFileWithAES(chiffre, secret, IV);
 		
 		// Verification du contenu
 		URI origine = Task1.class.getClassLoader().getResource("Task1_fileToEncrypt").toURI();
 		
+		// Verification de dechiffrement avec succes
 		if (Long.valueOf(-1).equals(Utils.filesCompareByByte(Paths.get(origine), Paths.get(dechiffre.toURI())))) {
 			System.out.println("Verification ok, le fichier a bien été chiffré puis déchiffré correctement.");
 		}

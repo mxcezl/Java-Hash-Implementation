@@ -24,8 +24,8 @@ public class Task2 {
 		String md5Order = Utils.bytesToHex(orderMd5Bytes);
 
 		// Affichage des deux hashs MD5
-		System.out.println("[MD5] " + NAME_FILE_LETTER + " : " + md5Letter);
-		System.out.println("[MD5] " + NAME_FILE_ORDER + "  : " + md5Order);
+		System.out.println("[MD5](" + md5Letter.getBytes().length + ") " + NAME_FILE_LETTER + " : " + md5Letter);
+		System.out.println("[MD5](" + md5Order.getBytes().length + ") " + NAME_FILE_ORDER + "  : " + md5Order);
 
 		// Comparaison et affichage du resultat
 		Utils.compareHashs(md5Letter, md5Order);
@@ -42,8 +42,8 @@ public class Task2 {
 		String sha256Order = Utils.bytesToHex(orderSha256Bytes);
 
 		// Affichage des deux hashs SHA-256
-		System.out.println("\n[SHA-256] " + NAME_FILE_LETTER + " : " + sha256Letter);
-		System.out.println("[SHA-256] " + NAME_FILE_ORDER + "  : " + sha256Order);
+		System.out.println("\n[SHA-256](" + sha256Letter.getBytes().length + ") " + NAME_FILE_LETTER + " : " + sha256Letter);
+		System.out.println("[SHA-256](" + sha256Order.getBytes().length + ") " + NAME_FILE_ORDER + "  : " + sha256Order);
 
 		// Comparaison et affichage du resultat
 		Utils.compareHashs(sha256Letter, sha256Order);
@@ -61,8 +61,8 @@ public class Task2 {
 		String HMACOrder = Utils.bytesToHex(orderHMACBytes);
 
 		// Affichage des deux hashs HMAC
-		System.out.println("\n[HMAC] " + NAME_FILE_LETTER + " : " + HMACLetter);
-		System.out.println("[HMAC] " + NAME_FILE_ORDER + "  : " + HMACOrder);
+		System.out.println("\n[HMAC](" + HMACLetter.getBytes().length + ") " + NAME_FILE_LETTER + " : " + HMACLetter);
+		System.out.println("[HMAC](" + HMACOrder.getBytes().length + ") " + NAME_FILE_ORDER + "  : " + HMACOrder);
 
 		// Comparaison et affichage du resultat
 		Utils.compareHashs(HMACLetter, HMACOrder);
@@ -91,9 +91,15 @@ public class Task2 {
 
 	/*use HMAC-SHA256*/
 	public static byte[] computeHMAC(File fileToHashMac, byte[] secret) throws Exception {
+		
+		// Utilise l'algorithme HMAC SHA-256
 		Mac mac = Mac.getInstance("HmacSHA256");
+		
+		// Cree les specs de la cle à partir du secret
 		SecretKeySpec secretKeySpec = new SecretKeySpec(secret, "HmacSHA256");
 		mac.init(secretKeySpec);
+		
+		// Renvoie les bytes du chiffré
 		return mac.doFinal(Files.readAllBytes(Paths.get(fileToHashMac.getAbsolutePath())));
 	}
 
