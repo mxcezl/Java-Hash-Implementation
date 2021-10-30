@@ -5,7 +5,9 @@
 	<groupId>tp-crypto</groupId>
 	<artifactId>java-impl</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	
 	<build>
+		<!-- Utilisation de Java 1.8 pour les lambda expressions -->
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -19,6 +21,7 @@
 		</plugins>
 	</build>
 
+	<!-- Ces dependances permettent de ne pas rajouter de JAR manuellement au classpath -->
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk15on -->
 		<dependency>
