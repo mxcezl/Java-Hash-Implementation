@@ -30,8 +30,8 @@ public class Task3 {
 		String bobSecret = Utils.bytesToHex(bobGenerateSharedSecret(bobKeyAgreement, aliceKeys.getPublic()));
 
 		// Affichage des clés privées générés par alice et bob
-		System.out.println("[HMAC](" + aliceSecret.getBytes().length + ") Alice : " + aliceSecret);
-		System.out.println("[HMAC](" + bobSecret.getBytes().length + ") Bob   : " + bobSecret);
+		System.out.println("[Diffie-Hellman](" + aliceSecret.getBytes().length + ") Alice : " + aliceSecret);
+		System.out.println("[Diffie-Hellman](" + bobSecret.getBytes().length + ") Bob   : " + bobSecret);
 
 		// On constate qu'ils sont les mêmes
 		Utils.compareHashs(aliceSecret, bobSecret);
